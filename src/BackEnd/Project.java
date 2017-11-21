@@ -1,3 +1,5 @@
+package BackEnd;
+
 
 import java.util.ArrayList;
 
@@ -13,11 +15,12 @@ import java.util.ArrayList;
  */
 public class Project {
     
+    private int Number;
     private final String title;
     private final String school;
     private final String supervisor;
     
-    private ArrayList<Student> students;
+    private final ArrayList<Student> students;
     
     public Project(String title,String school, String supervisor)
     {
@@ -25,6 +28,16 @@ public class Project {
         this.school = school;
         this.supervisor = supervisor;
         this.students = new ArrayList<>();
+    }
+    
+    public String getNumber()
+    {
+        return Integer.toString(Number);
+    }
+    
+    public void setNumber(int Number)
+    {
+        this.Number = Number;
     }
     
     public String getTitle()
@@ -40,6 +53,11 @@ public class Project {
     public String getSupervisor()
     {
         return supervisor;
+    }
+    
+    public String getNoOfStudents()
+    {
+        return Integer.toString(students.size());
     }
     
     public ArrayList<Student> getStudents()
