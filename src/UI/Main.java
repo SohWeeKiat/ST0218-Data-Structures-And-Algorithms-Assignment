@@ -21,11 +21,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException{
 
-        Parent scene = FXMLLoader.load(getClass().getResource("/UI/MainForm.fxml"));
-        Scene MainForm = new Scene(scene);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UI/MainForm.fxml"));
+        Parent root = (Parent)loader.load();
+        MainFormController controller = (MainFormController)loader.getController();
+        controller.setStage(primaryStage);
         
         primaryStage.setTitle("School Management");
-        primaryStage.setScene(MainForm);
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

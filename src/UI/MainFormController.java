@@ -25,6 +25,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -40,14 +41,22 @@ public class MainFormController implements Initializable {
     @FXML
     private TableView<Student> tVStudentsInProj;
 
+    private Stage window;
+    
     private final ObservableList<Student> StudentList = FXCollections.observableArrayList();
     private final ObservableList<Project> ProjectList = FXCollections.observableArrayList();
     private final ObservableList<Student> StudentInProject = FXCollections.observableArrayList();
     private School s;
 
+    public void setStage(Stage s)
+    {
+        window = s;
+    }
+    
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -76,7 +85,7 @@ public class MainFormController implements Initializable {
         fileChooser.getExtensionFilters().addAll(
                 new ExtensionFilter("Text Documents (*.txt)", "*.txt"));
 
-        File selectedFile = fileChooser.showSaveDialog(null);
+        File selectedFile = fileChooser.showSaveDialog(window);
         if (selectedFile == null) 
             return;
 
@@ -95,7 +104,7 @@ public class MainFormController implements Initializable {
             fileChooser.getExtensionFilters().addAll(
                     new ExtensionFilter("Text Documents (*.txt)", "*.txt"));
 
-            File selectedFile = fileChooser.showOpenDialog(null);
+            File selectedFile = fileChooser.showOpenDialog(window);
             if (selectedFile == null) 
                 return;
 
