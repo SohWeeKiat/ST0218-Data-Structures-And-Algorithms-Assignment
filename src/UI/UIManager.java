@@ -11,6 +11,7 @@ import UI.studentUI.AddEditStudentFormController;
 import BackEnd.Event;
 import BackEnd.Project;
 import BackEnd.Student;
+import UI.studentUI.SelectStudentFormController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -144,7 +145,7 @@ public class UIManager {
     {
         Stage stage = new Stage();
         
-        FXMLLoader loader = new FXMLLoader(c.getResource("/UI/AddEditEventForm.fxml"));
+        FXMLLoader loader = new FXMLLoader(c.getResource("/UI/eventUI/AddEditEventForm.fxml"));
         Parent root = null;
         try {
             root = (Parent)loader.load();
@@ -163,5 +164,28 @@ public class UIManager {
         stage.showAndWait();
         
        return controller.IsSuccess();
+    }
+    
+    public static Student SelectStudentUI(Class<?> c,Project p)
+    {
+        Stage stage = new Stage();
+        
+        FXMLLoader loader = new FXMLLoader(c.getResource("/UI/studentUI/SelectStudentForm.fxml"));
+        Parent root = null;
+        try {
+            root = (Parent)loader.load();
+        } catch (IOException ex) {
+            Logger.getLogger(MainFormController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        SelectStudentFormController controller = (SelectStudentFormController)loader.getController();
+     
+        Scene AddEditEventScene = new Scene(root);
+        stage.setTitle("Select Student");
+        stage.setScene(AddEditEventScene);
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL); 
+        stage.showAndWait();
+        
+       return controller.getSelection();
     }
 }

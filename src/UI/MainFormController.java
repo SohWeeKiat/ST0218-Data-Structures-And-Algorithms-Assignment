@@ -19,10 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -131,19 +128,22 @@ public class MainFormController implements Initializable {
         if (s == null)
             return;
         StudentList.add(s);
-        school.addStudent(s);
+        if (school != null)
+            school.addStudent(s);
     }
 
     @FXML
     private void OnDeleteStudentClicked(MouseEvent event) {
         if (tVStudents.getSelectionModel().getSelectedIndex() < 0)
             return;
-        if (!UIManager.ShowConfirmationAlert("Confirmation", "Delete Student", "Are you sure you want delete this student?"
+        if (!UIManager.ShowConfirmationAlert("Confirmation", 
+                "Delete Student", "Are you sure you want delete this student?"
                 + "\nHe/she will be removed from the FYP roject if he is inside 1."))
             return;
         Student s = tVStudents.getSelectionModel().getSelectedItem();
         StudentList.remove(s);
-        school.removeStudent(s);
+        if (school != null)
+            school.removeStudent(s);
     }
 
     @FXML
@@ -163,7 +163,8 @@ public class MainFormController implements Initializable {
         if (p == null)
             return;
         ProjectList.add(p);
-        school.addProject(p);
+        if (school != null)
+            school.addProject(p);
     }
 
     @FXML
@@ -181,11 +182,13 @@ public class MainFormController implements Initializable {
     private void OnDeleteProjectClicked(MouseEvent event) {
         if (tVProjects.getSelectionModel().getSelectedIndex() < 0)
             return;
-        if (!UIManager.ShowConfirmationAlert("Confirmation", "Delete Project", "Are you sure you want delete this project?"))
+        if (!UIManager.ShowConfirmationAlert("Confirmation", 
+                "Delete Project", "Are you sure you want delete this project?"))
             return;
         Project p = tVProjects.getSelectionModel().getSelectedItem();
         ProjectList.remove(p);
-        school.removeProject(p);
+        if (school != null)
+            school.removeProject(p);
     }
     
     @FXML
@@ -210,11 +213,20 @@ public class MainFormController implements Initializable {
     private void OnDeleteEventClicked(MouseEvent event) {
         if (tVEvents.getSelectionModel().getSelectedIndex() < 0)
             return;
-        if (!UIManager.ShowConfirmationAlert("Confirmation", "Delete Project", "Are you sure you want delete this project?"))
+        if (!UIManager.ShowConfirmationAlert("Confirmation", 
+                "Delete Project", "Are you sure you want delete this project?"))
             return;
         Event e = tVEvents.getSelectionModel().getSelectedItem();
         EventList.remove(e);
         //school.removeProject(p);
+    }
+
+    @FXML
+    private void OnAddStudentToProjClicked(MouseEvent event) {
+    }
+
+    @FXML
+    private void OnRemoveStudentFromProjClicked(MouseEvent event) {
     }
 
 }

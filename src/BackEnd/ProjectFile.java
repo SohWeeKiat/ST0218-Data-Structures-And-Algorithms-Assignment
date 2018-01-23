@@ -38,7 +38,6 @@ public class ProjectFile {
                 String SupervisorName = st.nextToken();
 
                 Project p = new Project(ProjectTitle, School, SupervisorName);
-                p.setNumber(i + 1);
                 int StudentCount = Integer.parseInt(st.nextToken());
                 for (int x = 0; x < StudentCount; x++) {
                     String AdminNo = st.nextToken();

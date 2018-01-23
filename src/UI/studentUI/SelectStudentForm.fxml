@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.studentUI.SelectStudentFormController">
+    <children>
+        <TableView layoutX="14.0" layoutY="14.0" prefHeight="355.0" prefWidth="382.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <columns>
+                <TableColumn prefWidth="90.0" text="Admin No.">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="AdminNo" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="173.0" text="Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Name" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="82.0" text="Gender">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Gender" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="99.0" text="Course">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Course" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Button layoutX="335.0" layoutY="361.0" mnemonicParsing="false" prefWidth="70.0" text="OK" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+    </children>
+</AnchorPane>

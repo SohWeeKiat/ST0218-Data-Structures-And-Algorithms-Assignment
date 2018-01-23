@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="219.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.projectUI.AddEditProjectFormController">
+<AnchorPane id="AnchorPane" prefHeight="198.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.projectUI.AddEditProjectFormController">
    <children>
       <Label text="Project Info :" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
          <font>

@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public class Project {
     
-    private int Number;
     private String title;
     private String school;
     private String supervisor;
@@ -29,17 +28,7 @@ public class Project {
         this.supervisor = supervisor;
         this.students = new ArrayList<>();
     }
-    
-    public String getNumber()
-    {
-        return Integer.toString(Number);
-    }
-    
-    public void setNumber(int Number)
-    {
-        this.Number = Number;
-    }
-    
+
     public String getTitle()
     {
         return title;
