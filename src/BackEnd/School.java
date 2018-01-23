@@ -33,4 +33,29 @@ public class School {
     {
         return projects;
     }
+    
+    public void addStudent(Student s)
+    {
+        this.students.add(s);
+    }
+    
+    public void removeStudent(Student s)
+    {
+        Project p = s.getProject();
+        if (p != null)
+            p.RemoveStudent(s);
+        this.students.remove(s);
+    }
+    
+    public void addProject(Project p)
+    {
+        this.projects.add(p);
+    }
+    
+    public void removeProject(Project p)
+    {
+        for(Student s : p.getStudents())
+            s.RemoveProject();
+        this.projects.remove(p);
+    }
 }

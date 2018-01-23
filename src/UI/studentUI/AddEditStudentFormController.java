@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI;
+package UI.studentUI;
 
 import BackEnd.Student;
 import java.net.URL;
@@ -34,8 +34,6 @@ public class AddEditStudentFormController implements Initializable {
     private RadioButton rBMale;
     @FXML
     private RadioButton rBFemale;
-    @FXML
-    private ComboBox<String> cmBFYP;
 
     private Student student;
     @FXML
@@ -71,12 +69,19 @@ public class AddEditStudentFormController implements Initializable {
             //error
             return;
         }
-        student.setName(tBName.getText());
-        student.setAdminNo(tBAdminNo.getText());
-        student.setCourse(tBCourse.getText());
-        student.setGender(rBMale.isSelected());
+        if (student != null){
+            student.setName(tBName.getText());
+            student.setAdminNo(tBAdminNo.getText());
+            student.setCourse(tBCourse.getText());
+            student.setGender(rBMale.isSelected());
+        }else{
+            student = new Student(tBName.getText(),
+                    tBAdminNo.getText(),
+                    tBCourse.getText(),
+                    rBMale.isSelected() ? 'M' : 'F');
+        }
+        Success = true;
        ((Node)(event.getSource())).getScene().getWindow().hide();
-       Success = true;
     }
     
     public Student IsSuccess()

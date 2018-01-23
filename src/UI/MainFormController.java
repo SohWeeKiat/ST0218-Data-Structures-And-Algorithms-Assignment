@@ -5,6 +5,7 @@
  */
 package UI;
 
+import BackEnd.Event;
 import BackEnd.Project;
 import BackEnd.ProjectFile;
 import BackEnd.School;
@@ -21,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -41,13 +43,20 @@ public class MainFormController implements Initializable {
     private TableView<Project> tVProjects;
     @FXML
     private TableView<Student> tVStudentsInProj;
-
+    @FXML
+    private TableView<Event> tVEvents;
+    
     private Stage window;
     
     private final ObservableList<Student> StudentList = FXCollections.observableArrayList();
     private final ObservableList<Project> ProjectList = FXCollections.observableArrayList();
     private final ObservableList<Student> StudentInProject = FXCollections.observableArrayList();
-    private School s;
+    private final ObservableList<Student> EventList = FXCollections.observableArrayList();
+    
+    private School school;
+ 
+    @FXML
+    private TableView<?> tVProjects2;
 
     public void setStage(Stage s)
     {
@@ -80,6 +89,12 @@ public class MainFormController implements Initializable {
         });
     }
 
+    private void RefreshTableView(TableView<?> tV)
+    {
+        tV.getColumns().get(0).setVisible(false);
+        tV.getColumns().get(0).setVisible(true);
+    }
+    
     @FXML
     private void OnOutputToFileClick(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -92,11 +107,7 @@ public class MainFormController implements Initializable {
 
         boolean result = new ProjectFile(selectedFile.getAbsolutePath()).OutputFile(
                 new ArrayList<>(tVProjects.getSelectionModel().getSelectedItems()));
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Information");
-        alert.setHeaderText("Output to file");
-        alert.setContentText((result ? "Successfully saved" : "Failed to save" )+ " file");
-        alert.showAndWait();
+        UIManager.ShowInfoAlert("Information", "Output to file", (result ? "Successfully saved" : "Failed to save" )+ " file");
     }
 
     @FXML
@@ -109,9 +120,9 @@ public class MainFormController implements Initializable {
             if (selectedFile == null) 
                 return;
 
-            s = new School(selectedFile.getAbsolutePath());
-            StudentList.addAll(s.getStudents());
-            ProjectList.addAll(s.getProjects());
+            school = new School(selectedFile.getAbsolutePath());
+            StudentList.addAll(school.getStudents());
+            ProjectList.addAll(school.getProjects());
     }
 
     @FXML
@@ -119,12 +130,20 @@ public class MainFormController implements Initializable {
         Student s = UIManager.AddStudentUI(getClass());
         if (s == null)
             return;
+        StudentList.add(s);
+        school.addStudent(s);
     }
 
     @FXML
     private void OnDeleteStudentClicked(MouseEvent event) {
         if (tVStudents.getSelectionModel().getSelectedIndex() < 0)
             return;
+        if (!UIManager.ShowConfirmationAlert("Confirmation", "Delete Student", "Are you sure you want delete this student?"
+                + "\nHe/she will be removed from the FYP roject if he is inside 1."))
+            return;
+        Student s = tVStudents.getSelectionModel().getSelectedItem();
+        StudentList.remove(s);
+        school.removeStudent(s);
     }
 
     @FXML
@@ -135,7 +154,67 @@ public class MainFormController implements Initializable {
                 tVStudents.getSelectionModel().getSelectedItem());
         if (s == null)
             return;
-        tVStudents.getColumns().get(0).setVisible(false);
-        tVStudents.getColumns().get(0).setVisible(true);
+        RefreshTableView(tVStudents);
     }
+
+    @FXML
+    private void OnAddProjectClicked(MouseEvent event) {
+        Project p = UIManager.AddProjectUI(getClass());
+        if (p == null)
+            return;
+        ProjectList.add(p);
+        school.addProject(p);
+    }
+
+    @FXML
+    private void OnEditProjectClicked(MouseEvent event) {
+        if (tVProjects.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        Project p = UIManager.EditProjectUI(getClass(),
+                tVProjects.getSelectionModel().getSelectedItem());
+        if (p == null)
+            return;
+        RefreshTableView(tVProjects);
+    }
+
+    @FXML
+    private void OnDeleteProjectClicked(MouseEvent event) {
+        if (tVProjects.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        if (!UIManager.ShowConfirmationAlert("Confirmation", "Delete Project", "Are you sure you want delete this project?"))
+            return;
+        Project p = tVProjects.getSelectionModel().getSelectedItem();
+        ProjectList.remove(p);
+        school.removeProject(p);
+    }
+    
+    @FXML
+    private void OnAddEventClicked(MouseEvent event) {
+        Event e = UIManager.AddEventUI(getClass());
+        if (e == null)
+            return;
+    }
+
+    @FXML
+    private void OnEditEventClicked(MouseEvent event) {
+        if (tVEvents.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        Event e = UIManager.EditEventUI(getClass(),
+                tVEvents.getSelectionModel().getSelectedItem());
+        if (e == null)
+            return;
+        RefreshTableView(tVEvents);
+    }
+
+    @FXML
+    private void OnDeleteEventClicked(MouseEvent event) {
+        if (tVEvents.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        if (!UIManager.ShowConfirmationAlert("Confirmation", "Delete Project", "Are you sure you want delete this project?"))
+            return;
+        Event e = tVEvents.getSelectionModel().getSelectedItem();
+        EventList.remove(e);
+        //school.removeProject(p);
+    }
+
 }

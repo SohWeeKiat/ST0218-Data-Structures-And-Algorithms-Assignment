@@ -16,7 +16,7 @@ public class Student {
     private String admin_no;
     private String course;
     private char gender;
-    private final Project currentFYP;
+    private Project currentFYP;
     
     public Student(String name,String admin_no,String course,char gender)
     {
@@ -81,5 +81,15 @@ public class Student {
         if (currentFYP == null)
             return "";
         return currentFYP.getTitle();
+    }
+    
+    public Project getProject()
+    {
+        return currentFYP;
+    }
+    
+    public void RemoveProject()
+    {
+        currentFYP = null;
     }
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="219.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.AddEditProjectFormController">
+<AnchorPane id="AnchorPane" prefHeight="219.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.projectUI.AddEditProjectFormController">
    <children>
       <Label text="Project Info :" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
          <font>
@@ -29,9 +29,9 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField layoutX="127.0" layoutY="54.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="54.0" />
-      <TextField layoutX="127.0" layoutY="87.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="87.0" />
-      <TextField layoutX="127.0" layoutY="122.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="122.0" />
-      <Button layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefWidth="70.0" text="OK" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <TextField fx:id="tBTitle" layoutX="140.0" layoutY="52.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="52.0" />
+      <TextField fx:id="tBSchool" layoutX="140.0" layoutY="85.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="85.0" />
+      <TextField fx:id="tBSupervisor" layoutX="140.0" layoutY="120.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="120.0" />
+      <Button layoutX="260.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#OnOKClicked" prefWidth="70.0" text="OK" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
    </children>
 </AnchorPane>

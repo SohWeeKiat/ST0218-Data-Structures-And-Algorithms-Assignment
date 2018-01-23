@@ -16,9 +16,9 @@ import java.util.ArrayList;
 public class Project {
     
     private int Number;
-    private final String title;
-    private final String school;
-    private final String supervisor;
+    private String title;
+    private String school;
+    private String supervisor;
     
     private final ArrayList<Student> students;
     
@@ -45,14 +45,29 @@ public class Project {
         return title;
     }
     
+    public void setTitle(String t)
+    {
+        this.title = t;
+    }
+    
     public String getSchool()
     {
         return school;
     }
     
+    public void setSchool(String s)
+    {
+        this.school = s;
+    }
+    
     public String getSupervisor()
     {
         return supervisor;
+    }
+    
+    public void setSupervisor(String s)
+    {
+        this.supervisor = s;
     }
     
     public String getNoOfStudents()
@@ -68,5 +83,10 @@ public class Project {
     public void AddStudent(Student s)
     {
         students.add(s);
+    }
+    
+    public void RemoveStudent(Student s)
+    {
+        students.remove(s);
     }
 }

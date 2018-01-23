@@ -13,10 +13,20 @@ import java.io.Serializable;
  */
 public class Event implements Serializable{
     
-    private String EventName;
+    private String event_name;
+    
+    public Event(String e)
+    {
+        this.event_name = e;
+    }
     
     public String getEventName()
     {
-        return this.EventName;
+        return this.event_name;
+    }
+    
+    public void setEventName(String n)
+    {
+        this.event_name = n;
     }
 }
