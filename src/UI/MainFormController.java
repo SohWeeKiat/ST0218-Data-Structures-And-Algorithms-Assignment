@@ -23,6 +23,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -111,5 +112,30 @@ public class MainFormController implements Initializable {
             s = new School(selectedFile.getAbsolutePath());
             StudentList.addAll(s.getStudents());
             ProjectList.addAll(s.getProjects());
+    }
+
+    @FXML
+    private void OnAddStudentClicked(MouseEvent event) {
+        Student s = UIManager.AddStudentUI(getClass());
+        if (s == null)
+            return;
+    }
+
+    @FXML
+    private void OnDeleteStudentClicked(MouseEvent event) {
+        if (tVStudents.getSelectionModel().getSelectedIndex() < 0)
+            return;
+    }
+
+    @FXML
+    private void OnEditStudentClicked(MouseEvent event) {
+        if (tVStudents.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        Student s = UIManager.EditStudentUI(getClass(),
+                tVStudents.getSelectionModel().getSelectedItem());
+        if (s == null)
+            return;
+        tVStudents.getColumns().get(0).setVisible(false);
+        tVStudents.getColumns().get(0).setVisible(true);
     }
 }

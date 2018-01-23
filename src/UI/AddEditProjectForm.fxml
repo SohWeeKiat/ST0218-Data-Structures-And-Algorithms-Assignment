@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="219.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.AddEditProjectFormController">
+   <children>
+      <Label text="Project Info :" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="56.0" text="Title :" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="56.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="89.0" text="School :" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="89.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="124.0" text="Supervisor :" AnchorPane.rightAnchor="224.0" AnchorPane.topAnchor="124.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField layoutX="127.0" layoutY="54.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="54.0" />
+      <TextField layoutX="127.0" layoutY="87.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="87.0" />
+      <TextField layoutX="127.0" layoutY="122.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="127.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="122.0" />
+      <Button layoutX="260.0" layoutY="193.0" mnemonicParsing="false" prefWidth="70.0" text="OK" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+   </children>
+</AnchorPane>

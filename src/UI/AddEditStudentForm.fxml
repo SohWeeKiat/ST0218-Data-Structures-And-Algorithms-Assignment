@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="293.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.AddEditStudentFormController">
+   <children>
+      <Label layoutY="7.0" text="Student Info:" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="134.0" layoutY="53.0" text="Name :" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="53.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="102.0" layoutY="91.0" text="Admin No. :" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="91.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="127.0" layoutY="132.0" text="Course :" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="132.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="125.0" layoutY="167.0" text="Gender :" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="167.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="5.0" layoutY="198.0" text="Current Final Year Project :" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="198.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tBName" layoutX="192.0" layoutY="51.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="51.0" />
+      <TextField fx:id="tBAdminNo" layoutX="192.0" layoutY="89.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="89.0" />
+      <TextField fx:id="tBCourse" layoutX="192.0" layoutY="130.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="130.0" />
+      <RadioButton fx:id="rBMale" layoutX="192.0" layoutY="169.0" mnemonicParsing="false" selected="true" text="Male" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="205.0" AnchorPane.topAnchor="169.0">
+         <toggleGroup>
+            <ToggleGroup fx:id="GenderGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="rBFemale" layoutX="251.0" layoutY="169.0" mnemonicParsing="false" text="Female" toggleGroup="$GenderGroup" AnchorPane.leftAnchor="251.0" AnchorPane.rightAnchor="146.0" AnchorPane.topAnchor="169.0" />
+      <ComboBox fx:id="cmBFYP" layoutX="192.0" layoutY="196.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="196.0" />
+      <Button layoutX="372.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#OnOkClicked" prefWidth="70.0" text="OK" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+   </children>
+</AnchorPane>

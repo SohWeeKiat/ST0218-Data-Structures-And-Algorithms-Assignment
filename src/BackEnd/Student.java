@@ -12,10 +12,10 @@ package BackEnd;
  */
 public class Student {
     
-    private final String name;
-    private final String admin_no;
-    private final String course;
-    private final char gender;
+    private String name;
+    private String admin_no;
+    private String course;
+    private char gender;
     private final Project currentFYP;
     
     public Student(String name,String admin_no,String course,char gender)
@@ -41,9 +41,19 @@ public class Student {
         return name;
     }
     
+    public void setName(String n)
+    {
+        this.name = n;
+    }
+    
     public String getAdminNo()
     {
         return admin_no;
+    }
+    
+    public void setAdminNo(String n)
+    {
+        this.admin_no = n;
     }
     
     public String getCourse()
@@ -51,11 +61,21 @@ public class Student {
         return course;
     }
     
+    public void setCourse(String c)
+    {
+        this.course = c;
+    }
+    
     public char getGender()
     {
         return gender;
     }
-    
+
+    public void setGender(boolean IsMale)
+    {
+        this.gender = IsMale ? 'M' : 'F';
+    }
+        
     public String getCurrentProjectTitle()
     {
         if (currentFYP == null)
