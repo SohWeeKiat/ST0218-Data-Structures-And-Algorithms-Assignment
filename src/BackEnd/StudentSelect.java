@@ -15,7 +15,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class StudentSelect{
     
     private BooleanProperty IsInsideProject;
-    private Student student;
+    private final Student student;
     
     public StudentSelect(Student s,boolean inside)
     {

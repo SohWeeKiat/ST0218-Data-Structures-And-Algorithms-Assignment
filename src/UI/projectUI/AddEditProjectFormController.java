@@ -43,6 +43,8 @@ public class AddEditProjectFormController implements Initializable {
     
     public void setProject(Project p)
     {
+        if (p == null)
+            return;
         this.project = p;
         
         tBTitle.setText(project.getTitle());

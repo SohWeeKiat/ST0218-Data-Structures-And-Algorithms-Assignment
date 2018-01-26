@@ -52,6 +52,8 @@ public class AddEditStudentFormController implements Initializable {
 
     public void SetStudent(Student s)
     {
+        if (s == null)
+            return;
         this.student = s;
         
         tBName.setText(student.getName());

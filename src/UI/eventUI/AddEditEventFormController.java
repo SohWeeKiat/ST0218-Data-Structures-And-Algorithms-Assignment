@@ -38,7 +38,8 @@ public class AddEditEventFormController implements Initializable {
     
     public void setEvent(Event e)
     {
-        System.out.println("SETEVENT");
+        if (e == null)
+            return;
         this.evnt = e;
         tBEventName.setText(evnt.getEventName());
     }

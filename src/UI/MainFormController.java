@@ -247,12 +247,22 @@ public class MainFormController implements Initializable {
     }
 
     @FXML
-    private void OnAddStudentToProjClicked(MouseEvent event) {
+    private void OnManStudInProjClicked(MouseEvent event) {
         if (tVProjects.getSelectionModel().getSelectedIndex() < 0)
             return;
         Project p = tVProjects.getSelectionModel().getSelectedItem();
         UIManager.SelectStudentUI(getClass(), p,
                 school.getAvailStudentsToSelect(p));
         RefreshStudentsInProject(p);
+    }
+    
+    @FXML
+    private void OnManProjInEventsClicked(MouseEvent event) {
+//        if (tVEvents.getSelectionModel().getSelectedIndex() < 0)
+//            return;
+//        Event e = tVEvents.getSelectionModel().getSelectedItem();
+//        UIManager.SelectProjectUI(getClass(), e,
+//                school.getAvailStudentsToSelect(e));
+        
     }
 }
