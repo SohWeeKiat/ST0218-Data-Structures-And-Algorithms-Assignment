@@ -11,8 +11,10 @@ import UI.studentUI.AddEditStudentFormController;
 import BackEnd.Event;
 import BackEnd.Project;
 import BackEnd.Student;
+import BackEnd.StudentSelect;
 import UI.studentUI.SelectStudentFormController;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
@@ -166,7 +168,7 @@ public class UIManager {
        return controller.IsSuccess();
     }
     
-    public static Student SelectStudentUI(Class<?> c,Project p)
+    public static void SelectStudentUI(Class<?> c,Project p,ArrayList<StudentSelect> list)
     {
         Stage stage = new Stage();
         
@@ -178,14 +180,13 @@ public class UIManager {
             Logger.getLogger(MainFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         SelectStudentFormController controller = (SelectStudentFormController)loader.getController();
-     
-        Scene AddEditEventScene = new Scene(root);
+        controller.setProjectAndList(p,list);
+        
+        Scene SelectStudentScene = new Scene(root);
         stage.setTitle("Select Student");
-        stage.setScene(AddEditEventScene);
+        stage.setScene(SelectStudentScene);
         stage.setResizable(false);
         stage.initModality(Modality.APPLICATION_MODAL); 
         stage.showAndWait();
-        
-       return controller.getSelection();
     }
 }

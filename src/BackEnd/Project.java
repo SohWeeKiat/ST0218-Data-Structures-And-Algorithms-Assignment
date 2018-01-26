@@ -71,11 +71,18 @@ public class Project {
     
     public void AddStudent(Student s)
     {
-        students.add(s);
+        if (!students.contains(s))
+            students.add(s);
     }
     
     public void RemoveStudent(Student s)
     {
         students.remove(s);
+    }
+    
+    @Override
+    public String toString()
+    {
+        return title + school + supervisor;
     }
 }

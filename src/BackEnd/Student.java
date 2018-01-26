@@ -88,8 +88,14 @@ public class Student {
         return currentFYP;
     }
     
-    public void RemoveProject()
+    public void setProject(Project p)
     {
-        currentFYP = null;
+        currentFYP = p;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return name + admin_no + course;
     }
 }

@@ -14,6 +14,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -42,18 +44,24 @@ public class MainFormController implements Initializable {
     private TableView<Student> tVStudentsInProj;
     @FXML
     private TableView<Event> tVEvents;
-    
+    @FXML
+    private TableView<Project> tVProjInEvents;
+
     private Stage window;
     
     private final ObservableList<Student> StudentList = FXCollections.observableArrayList();
     private final ObservableList<Project> ProjectList = FXCollections.observableArrayList();
     private final ObservableList<Student> StudentInProject = FXCollections.observableArrayList();
-    private final ObservableList<Student> EventList = FXCollections.observableArrayList();
+    private final ObservableList<Event> EventList = FXCollections.observableArrayList();
     
     private School school;
  
     @FXML
-    private TableView<?> tVProjects2;
+    private TextField tBEventSearch;
+    @FXML
+    private TextField tBProjectSearch;
+    @FXML
+    private TextField tBStudentSearch;
 
     public void setStage(Stage s)
     {
@@ -72,20 +80,38 @@ public class MainFormController implements Initializable {
         tVStudents.setItems(StudentList);
         tVProjects.setItems(ProjectList);
         tVStudentsInProj.setItems(StudentInProject);
-
+        tVEvents.setItems(EventList);
+        
         tVProjects.setRowFactory(tv -> {
             TableRow<Project> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 1 && !row.isEmpty()) {
                     Project rowData = row.getItem();
-                    StudentInProject.clear();
-                    StudentInProject.addAll(rowData.getStudents());
+                    RefreshStudentsInProject(rowData);
                 }
             });
             return row;
         });
+        
+        tBStudentSearch.textProperty().addListener((observable) -> {
+            String SearchText = tBStudentSearch.getText();
+            StudentList.clear();
+            StudentList.addAll(school.SearchStudents(SearchText));
+        });
+        tBProjectSearch.textProperty().addListener((observable) -> {
+            String SearchText = tBProjectSearch.getText();
+            ProjectList.clear();
+            ProjectList.addAll(school.SearchProjects(SearchText));
+        });
+        school = new School();
     }
 
+    private void RefreshStudentsInProject(Project p)
+    {
+        StudentInProject.clear();
+        StudentInProject.addAll(p.getStudents());
+    }
+    
     private void RefreshTableView(TableView<?> tV)
     {
         tV.getColumns().get(0).setVisible(false);
@@ -142,8 +168,7 @@ public class MainFormController implements Initializable {
             return;
         Student s = tVStudents.getSelectionModel().getSelectedItem();
         StudentList.remove(s);
-        if (school != null)
-            school.removeStudent(s);
+        school.removeStudent(s);
     }
 
     @FXML
@@ -163,8 +188,7 @@ public class MainFormController implements Initializable {
         if (p == null)
             return;
         ProjectList.add(p);
-        if (school != null)
-            school.addProject(p);
+        school.addProject(p);
     }
 
     @FXML
@@ -187,8 +211,7 @@ public class MainFormController implements Initializable {
             return;
         Project p = tVProjects.getSelectionModel().getSelectedItem();
         ProjectList.remove(p);
-        if (school != null)
-            school.removeProject(p);
+        school.removeProject(p);
     }
     
     @FXML
@@ -196,6 +219,8 @@ public class MainFormController implements Initializable {
         Event e = UIManager.AddEventUI(getClass());
         if (e == null)
             return;
+        EventList.add(e);
+        school.addEvent(e);
     }
 
     @FXML
@@ -218,15 +243,16 @@ public class MainFormController implements Initializable {
             return;
         Event e = tVEvents.getSelectionModel().getSelectedItem();
         EventList.remove(e);
-        //school.removeProject(p);
+        school.removeEvent(e);
     }
 
     @FXML
     private void OnAddStudentToProjClicked(MouseEvent event) {
+        if (tVProjects.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        Project p = tVProjects.getSelectionModel().getSelectedItem();
+        UIManager.SelectStudentUI(getClass(), p,
+                school.getAvailStudentsToSelect(p));
+        RefreshStudentsInProject(p);
     }
-
-    @FXML
-    private void OnRemoveStudentFromProjClicked(MouseEvent event) {
-    }
-
 }

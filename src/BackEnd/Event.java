@@ -5,6 +5,7 @@
  */
 package BackEnd;
 
+import BackEnd.util.LinkList;
 import java.io.Serializable;
 
 /**
@@ -14,10 +15,12 @@ import java.io.Serializable;
 public class Event implements Serializable{
     
     private String event_name;
+    private LinkList projects;
     
     public Event(String e)
     {
         this.event_name = e;
+        this.projects = new LinkList();
     }
     
     public String getEventName()
@@ -28,5 +31,10 @@ public class Event implements Serializable{
     public void setEventName(String n)
     {
         this.event_name = n;
+    }
+    
+    public String getProjectCount()
+    {
+        return Integer.toString(projects.getNoOfElement());
     }
 }
