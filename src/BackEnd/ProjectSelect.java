@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleBooleanProperty;
  *
  * @author Wee Kiat
  */
-public class ProjectSelect {
+public class ProjectSelect implements Comparable{
     
     private final Project project;
     private BooleanProperty IsInsideEvent;
@@ -51,5 +51,14 @@ public class ProjectSelect {
     public BooleanProperty IsInsideEventProperty()
     {
         return IsInsideEvent;
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        if (this.IsInsideEvent.get())
+            return 1;
+        else if (((ProjectSelect)o).IsInsideEvent.get())
+            return -1;
+        return 0;
     }
 }

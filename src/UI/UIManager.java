@@ -37,25 +37,22 @@ public class UIManager {
     
     public static void ShowInfoAlert(String title,String header, String content)
     {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
+        ShowAlert(title,header,content,Alert.AlertType.INFORMATION);
     }
     
     public static void ShowErrorAlert(String title,String header, String content)
     {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
+        ShowAlert(title,header,content,Alert.AlertType.ERROR);
     }
     
     public static boolean ShowConfirmationAlert(String title,String header, String content)
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        return ShowAlert(title,header,content,Alert.AlertType.CONFIRMATION);
+    }
+    
+    private static boolean ShowAlert(String title,String header, String content, Alert.AlertType type)
+    {
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
@@ -149,7 +146,6 @@ public class UIManager {
         try {
             root = (Parent)loader.load();
         } catch (IOException ex) {
-            Logger.getLogger(MainFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         func.accept(loader.getController());
         
@@ -170,7 +166,6 @@ public class UIManager {
         try {
             root = (Parent)loader.load();
         } catch (IOException ex) {
-            Logger.getLogger(MainFormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         func.accept(loader.getController());
         

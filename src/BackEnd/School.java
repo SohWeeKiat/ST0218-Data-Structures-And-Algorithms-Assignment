@@ -95,6 +95,14 @@ public class School {
         return selectable;
     }
     
+    public ArrayList<ProjectSelect> getAvailProjectsToSelect(Event e)
+    {
+        ArrayList<ProjectSelect> selectable = new ArrayList<>();
+        for(Project p : projects)
+            selectable.add(new ProjectSelect(p,e.HasProject(p)));
+        return selectable;
+    }
+    
     public ArrayList<Student> SearchStudents(String query)
     {
         query = query.toLowerCase();

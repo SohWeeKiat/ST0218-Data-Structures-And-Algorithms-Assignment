@@ -14,7 +14,6 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -258,11 +257,11 @@ public class MainFormController implements Initializable {
     
     @FXML
     private void OnManProjInEventsClicked(MouseEvent event) {
-//        if (tVEvents.getSelectionModel().getSelectedIndex() < 0)
-//            return;
-//        Event e = tVEvents.getSelectionModel().getSelectedItem();
-//        UIManager.SelectProjectUI(getClass(), e,
-//                school.getAvailStudentsToSelect(e));
+        if (tVEvents.getSelectionModel().getSelectedIndex() < 0)
+            return;
+        Event e = tVEvents.getSelectionModel().getSelectedItem();
+        UIManager.SelectProjectUI(getClass(), e,
+                school.getAvailProjectsToSelect(e));
         
     }
 }

@@ -20,6 +20,7 @@ public class Project {
     private String supervisor;
     
     private final ArrayList<Student> students;
+    private final ArrayList<Event> events;
     
     public Project(String title,String school, String supervisor)
     {
@@ -27,6 +28,7 @@ public class Project {
         this.school = school;
         this.supervisor = supervisor;
         this.students = new ArrayList<>();
+        this.events = new ArrayList<>();
     }
 
     public String getTitle()
@@ -78,6 +80,17 @@ public class Project {
     public void RemoveStudent(Student s)
     {
         students.remove(s);
+    }
+    
+    public void AddEvent(Event e)
+    {
+        if (!events.contains(e))
+            events.add(e);
+    }
+    
+    public void RemoveEvent(Event e)
+    {
+        events.remove(e);
     }
     
     @Override

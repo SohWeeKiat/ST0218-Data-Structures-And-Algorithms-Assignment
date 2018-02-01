@@ -37,4 +37,34 @@ public class Event implements Serializable{
     {
         return Integer.toString(projects.getNoOfElement());
     }
+    
+    public LinkList getProjects()
+    {
+        return projects;
+    }
+    
+    public void AddProject(Project p)
+    {
+        if (!HasProject(p))
+            projects.addLast(p);
+    }
+    
+    public void RemoveProject(Project p)
+    {
+        for(int i = 0;i < projects.getNoOfElement();i++){
+            if (projects.get(i) == p){
+                projects.remove(i);
+                break;
+            }
+        }
+    }
+    
+    public boolean HasProject(Project p)
+    {
+        for(int i = 0;i < projects.getNoOfElement();i++){
+            if (projects.get(i) == p)
+                return true;
+        }
+        return false;
+    }
 }
