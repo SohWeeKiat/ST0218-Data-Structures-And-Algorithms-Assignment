@@ -10,6 +10,7 @@ import BackEnd.Project;
 import BackEnd.ProjectFile;
 import BackEnd.School;
 import BackEnd.Student;
+import BackEnd.util.LinkList;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,6 +53,7 @@ public class MainFormController implements Initializable {
     private final ObservableList<Project> ProjectList = FXCollections.observableArrayList();
     private final ObservableList<Student> StudentInProject = FXCollections.observableArrayList();
     private final ObservableList<Event> EventList = FXCollections.observableArrayList();
+    private final ObservableList<Project> ProjectInEvent = FXCollections.observableArrayList();
     
     private School school;
  
@@ -80,6 +82,7 @@ public class MainFormController implements Initializable {
         tVProjects.setItems(ProjectList);
         tVStudentsInProj.setItems(StudentInProject);
         tVEvents.setItems(EventList);
+        tVProjInEvents.setItems(ProjectInEvent);
         
         tVProjects.setRowFactory(tv -> {
             TableRow<Project> row = new TableRow<>();
@@ -87,6 +90,17 @@ public class MainFormController implements Initializable {
                 if (event.getClickCount() == 1 && !row.isEmpty()) {
                     Project rowData = row.getItem();
                     RefreshStudentsInProject(rowData);
+                }
+            });
+            return row;
+        });
+        
+        tVEvents.setRowFactory(tv -> {
+            TableRow<Event> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 1 && !row.isEmpty()) {
+                    Event rowData = row.getItem();
+                    RefreshProjectsInEvent(rowData.getProjects());
                 }
             });
             return row;
@@ -102,6 +116,12 @@ public class MainFormController implements Initializable {
             ProjectList.clear();
             ProjectList.addAll(school.SearchProjects(SearchText));
         });
+        tBProjectSearch.textProperty().addListener((observable) -> {
+            String SearchText = tBEventSearch.getText();
+            EventList.clear();
+            EventList.addAll(school.SearchEvents(SearchText));
+        });
+        
         school = new School();
     }
 
@@ -109,6 +129,15 @@ public class MainFormController implements Initializable {
     {
         StudentInProject.clear();
         StudentInProject.addAll(p.getStudents());
+        RefreshTableView(tVProjects);
+    }
+    
+    private void RefreshProjectsInEvent(LinkList projects)
+    {
+        ProjectInEvent.clear();
+        for(int i = 0;i < projects.getNoOfElement();i++)
+            ProjectInEvent.addAll((Project)projects.get(i));
+        RefreshTableView(tVEvents);
     }
     
     private void RefreshTableView(TableView<?> tV)
@@ -133,20 +162,49 @@ public class MainFormController implements Initializable {
     }
 
     @FXML
-    private void OnOpenClick(ActionEvent event){
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(
-                    new ExtensionFilter("Text Documents (*.txt)", "*.txt"));
+    private void OnLoadProjectClick(ActionEvent event){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Text Documents (*.txt)", "*.txt"));
 
-            File selectedFile = fileChooser.showOpenDialog(window);
-            if (selectedFile == null) 
-                return;
+        File selectedFile = fileChooser.showOpenDialog(window);
+        if (selectedFile == null) 
+            return;
 
-            school = new School(selectedFile.getAbsolutePath());
-            StudentList.addAll(school.getStudents());
-            ProjectList.addAll(school.getProjects());
+        school = new School(selectedFile.getAbsolutePath(),school.getEvents());
+        StudentList.addAll(school.getStudents());
+        ProjectList.addAll(school.getProjects());
     }
 
+    @FXML
+    private void OnLoadEventsClick(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Event Documents (*.evt)", "*.evt"));
+
+        File selectedFile = fileChooser.showOpenDialog(window);
+        if (selectedFile == null) 
+            return;
+        if (!school.LoadEvents(selectedFile.getAbsolutePath()))
+            return;
+        EventList.addAll(school.getEvents());
+        ProjectList.addAll(school.getProjects());
+        StudentList.addAll(school.getStudents());
+    }
+
+    @FXML
+    private void OnSaveEventsClick(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new ExtensionFilter("Event Documents (*.evt)", "*.evt"));
+
+        File selectedFile = fileChooser.showSaveDialog(window);
+        if (selectedFile == null) 
+            return;
+        if (school.SaveEvents(selectedFile.getAbsolutePath()))
+            UIManager.ShowInfoAlert("Save Events", "Successful", "Successfully saved events");
+    }
+    
     @FXML
     private void OnAddStudentClicked(MouseEvent event) {
         Student s = UIManager.AddStudentUI(getClass());
@@ -262,6 +320,6 @@ public class MainFormController implements Initializable {
         Event e = tVEvents.getSelectionModel().getSelectedItem();
         UIManager.SelectProjectUI(getClass(), e,
                 school.getAvailProjectsToSelect(e));
-        
+        RefreshProjectsInEvent(e.getProjects());
     }
 }

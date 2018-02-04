@@ -1,5 +1,9 @@
 package BackEnd;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 /*
@@ -16,13 +20,13 @@ public class School {
     
     private final ArrayList<Student> students;
     private final ArrayList<Project> projects;
-    private final ArrayList<Event> events;
+    private ArrayList<Event> events;
     
-    public School(String Path)
+    public School(String Path,ArrayList<Event> events)
     {
         students = new ArrayList<>();
         projects = new ArrayList<>();
-        events = new ArrayList<>();
+        this.events = events;
         new ProjectFile(Path).ParseFile(this);
     }
     
@@ -31,6 +35,45 @@ public class School {
         students = new ArrayList<>();
         projects = new ArrayList<>();
         events = new ArrayList<>();
+    }
+    
+    public boolean SaveEvents(String FilePath)
+    {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(FilePath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(events);
+            out.close();
+            fileOut.close();
+            return true;
+        } catch (Exception i) {
+        }
+        return false;
+    }
+    
+    public boolean LoadEvents(String FilePath)
+    {
+        try {
+            FileInputStream fileIn = new FileInputStream(FilePath);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            events = (ArrayList<Event>)in.readObject();
+            in.close();
+            fileIn.close();
+            for(Event e : events){
+                for(int i = 0;i < e.getProjects().getNoOfElement();i++){
+                    Project p = (Project)e.getProjects().get(i);
+                    if (!projects.contains(p))
+                        projects.add(p);
+                    for(Student s : p.getStudents()){
+                        if (!students.contains(s))
+                            students.add(s);
+                    }
+                }
+            }
+            return true;
+        } catch (Exception i) {
+        }
+        return false;
     }
     
     public ArrayList<Student> getStudents()
@@ -123,5 +166,16 @@ public class School {
                 PList.add(p);
         }
         return PList;
+    }
+    
+    public ArrayList<Event> SearchEvents(String query)
+    {
+        query = query.toLowerCase();
+        ArrayList<Event> EList = new ArrayList<>();
+        for(Event e : events){
+            if (e.toString().toLowerCase().contains(query))
+                EList.add(e);
+        }
+        return EList;
     }
 }

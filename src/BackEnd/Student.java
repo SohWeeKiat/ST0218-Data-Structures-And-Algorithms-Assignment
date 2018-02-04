@@ -1,5 +1,7 @@
 package BackEnd;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,13 +12,22 @@ package BackEnd;
  *
  * @author Wee Kiat
  */
-public class Student {
+public class Student implements Serializable{
     
     private String name;
     private String admin_no;
     private String course;
     private char gender;
     private Project currentFYP;
+    
+    public Student()
+    {
+        this.name = null;
+        this.admin_no = null;
+        this.course = null;
+        this.gender = 'M';
+        this.currentFYP = null;
+    }
     
     public Student(String name,String admin_no,String course,char gender)
     {

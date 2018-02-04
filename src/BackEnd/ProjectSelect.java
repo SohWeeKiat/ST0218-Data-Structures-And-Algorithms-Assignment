@@ -53,6 +53,11 @@ public class ProjectSelect implements Comparable{
         return IsInsideEvent;
     }
     
+    public Project getProject()
+    {
+        return project;
+    }
+    
     @Override
     public int compareTo(Object o) {
         if (this.IsInsideEvent.get())

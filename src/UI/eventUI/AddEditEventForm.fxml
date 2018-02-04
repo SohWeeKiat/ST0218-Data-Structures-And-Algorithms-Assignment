@@ -21,5 +21,11 @@
       </Label>
       <TextField fx:id="tBEventName" layoutX="123.0" layoutY="72.0" prefWidth="190.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="72.0" />
       <Button layoutX="265.0" layoutY="138.0" mnemonicParsing="false" onMouseClicked="#OnOKClicked" prefWidth="70.0" text="OK" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+      <DatePicker fx:id="DPStarrtDate" layoutX="123.0" layoutY="107.0" prefHeight="25.0" prefWidth="190.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="107.0" />
+      <Label layoutX="38.0" layoutY="109.0" text="Start Date :" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="109.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -13,7 +13,9 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#OnOpenClick" text="Open..." />
+              <MenuItem mnemonicParsing="false" onAction="#OnLoadProjectClick" text="Load projects..." />
+                  <MenuItem mnemonicParsing="false" onAction="#OnLoadEventsClick" text="Load Events" />
+                  <MenuItem mnemonicParsing="false" onAction="#OnSaveEventsClick" text="Save Events" />
                   <MenuItem mnemonicParsing="false" onAction="#OnOutputToFileClick" text="Output to file" />
             </items>
           </Menu>
@@ -27,11 +29,16 @@
                      <children>
                         <Label layoutY="10.0" text="Search: " AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="10.0" />
                         <TextField fx:id="tBEventSearch" layoutX="51.0" layoutY="9.0" prefHeight="29.0" prefWidth="1014.0" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                        <TableView fx:id="tVEvents" layoutX="14.0" layoutY="46.0" prefHeight="338.0" prefWidth="384.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="683.0" AnchorPane.topAnchor="40.0">
+                        <TableView fx:id="tVEvents" layoutX="14.0" layoutY="46.0" prefHeight="342.0" prefWidth="495.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="572.0" AnchorPane.topAnchor="40.0">
                            <columns>
                               <TableColumn prefWidth="223.0" text="Title">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="EventName" />
+                                 </cellValueFactory>
+                              </TableColumn>
+                              <TableColumn prefWidth="94.0" text="Start Date">
+                                 <cellValueFactory>
+                                    <PropertyValueFactory property="StartDate" />
                                  </cellValueFactory>
                               </TableColumn>
                               <TableColumn prefWidth="105.0" text="No. Of Projects">
@@ -41,7 +48,7 @@
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <GridPane hgap="5" layoutX="14.0" layoutY="379.0" prefHeight="30.0" prefWidth="378.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="682.0">
+                        <GridPane hgap="5" layoutX="14.0" layoutY="379.0" prefHeight="30.0" prefWidth="496.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="571.0">
                            <children>
                               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#OnAddEventClicked" prefHeight="29.0" prefWidth="2821.0" text="Add Event" />
                               <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#OnEditEventClicked" prefHeight="29.0" text="Edit Event" GridPane.columnIndex="1" />
@@ -56,19 +63,14 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                         </GridPane>
-                        <TableView fx:id="tVProjInEvents" layoutX="397.0" layoutY="62.0" prefHeight="316.0" prefWidth="667.0" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="62.0">
+                        <TableView fx:id="tVProjInEvents" layoutX="397.0" layoutY="62.0" prefHeight="320.0" prefWidth="554.0" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="62.0">
                            <columns>
-                              <TableColumn prefWidth="58.0" text="No.">
-                                 <cellValueFactory>
-                                    <PropertyValueFactory property="Number" />
-                                 </cellValueFactory>
-                              </TableColumn>
-                              <TableColumn prefWidth="204.0" text="Title">
+                              <TableColumn prefWidth="222.0" text="Title">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="Title" />
                                  </cellValueFactory>
                               </TableColumn>
-                              <TableColumn prefWidth="76.0" text="School">
+                              <TableColumn prefWidth="58.0" text="School">
                                  <cellValueFactory>
                                     <PropertyValueFactory property="School" />
                                  </cellValueFactory>
@@ -85,8 +87,8 @@
                               </TableColumn>
                            </columns>
                         </TableView>
-                        <Label layoutX="397.0" layoutY="40.0" text="Projects being showcased:" AnchorPane.rightAnchor="534.0" AnchorPane.topAnchor="40.0" />
-                        <Button layoutX="397.0" layoutY="383.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#OnManProjInEventsClicked" prefHeight="29.0" prefWidth="669.0" text="Manage Projects in current event" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="398.0" AnchorPane.rightAnchor="5.0" />
+                        <Label layoutX="510.0" layoutY="40.0" text="Projects being showcased:" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="40.0" />
+                        <Button layoutX="509.0" layoutY="383.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onMouseClicked="#OnManProjInEventsClicked" prefHeight="29.0" prefWidth="558.0" text="Manage Projects in current event" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
                      </children>
                   </AnchorPane>
               </content>

@@ -6,6 +6,7 @@
 package UI.projectUI;
 
 import BackEnd.Event;
+import BackEnd.Project;
 import BackEnd.ProjectSelect;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 /**
@@ -30,7 +33,7 @@ public class SelectProjectFormController implements Initializable {
     @FXML
     private TableView<ProjectSelect> tVSelectProject;
 
-    private Event event;
+    private Event evt;
     
     private final ObservableList<ProjectSelect> ProjectSelectList = FXCollections.observableArrayList();
     /**
@@ -55,7 +58,22 @@ public class SelectProjectFormController implements Initializable {
     
     public void setEventAndList(Event e,ArrayList<ProjectSelect> p)
     {
-        event = e;
+        this.evt = e;
         ProjectSelectList.addAll(p);
+    }
+
+    @FXML
+    private void OnOKClicked(MouseEvent event) {
+        for(ProjectSelect ps : ProjectSelectList){
+            Project p = ps.getProject();
+            if (ps.getIsInsideEvent()){
+                p.AddEvent(evt);
+                evt.AddProject(p);
+            }else{
+                p.RemoveEvent(evt);
+                evt.RemoveProject(p);
+            }
+        }
+        ((Node)(event.getSource())).getScene().getWindow().hide();
     }
 }

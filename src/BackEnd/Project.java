@@ -1,6 +1,7 @@
 package BackEnd;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /*
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author Wee Kiat
  */
-public class Project {
+public class Project implements Serializable{
     
     private String title;
     private String school;
@@ -21,6 +22,15 @@ public class Project {
     
     private final ArrayList<Student> students;
     private final ArrayList<Event> events;
+    
+    public Project()
+    {
+        this.title = null;
+        this.school = null;
+        this.supervisor = null;
+        this.students = new ArrayList<>();
+        this.events = new ArrayList<>();
+    }
     
     public Project(String title,String school, String supervisor)
     {

@@ -67,12 +67,11 @@ public class SelectStudentFormController implements Initializable {
     @FXML
     private void OnOKClicked(MouseEvent event) {
         for(StudentSelect SS : StudentSelectList){
+            Student s = SS.getStudent();
             if (SS.getIsInsideProject()){
-                Student s = SS.getStudent();
                 project.AddStudent(s);
                 s.setProject(project);
             }else{
-                Student s = SS.getStudent();
                 project.RemoveStudent(s);
                 s.setProject(null);
             }

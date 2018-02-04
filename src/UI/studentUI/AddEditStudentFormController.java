@@ -6,6 +6,7 @@
 package UI.studentUI;
 
 import BackEnd.Student;
+import UI.UIManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -67,7 +68,7 @@ public class AddEditStudentFormController implements Initializable {
         if (tBName.getText().length() <= 0 ||
                 tBAdminNo.getText().length() <= 0 ||
                 tBCourse.getText().length() <= 0){
-            //error
+            UIManager.ShowErrorAlert("Error", "Empty Fields", "Please fill in all the field(s) before proceeding");
             return;
         }
         if (student != null){

@@ -6,6 +6,7 @@
 package UI.projectUI;
 
 import BackEnd.Project;
+import UI.UIManager;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -57,8 +58,7 @@ public class AddEditProjectFormController implements Initializable {
         if (tBTitle.getText().length() <= 0 ||
                 tBSchool.getText().length() <= 0 ||
                 tBSupervisor.getText().length() <= 0){
-            
-            //fail
+            UIManager.ShowErrorAlert("Error", "Empty Fields", "Please fill in all the field(s) before proceeding");
             return;
         }
         if (project != null){

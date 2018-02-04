@@ -1,4 +1,11 @@
-3
+10
 iPhone App,EEE,John Tan,1,P109520,Kelvin Tay,DBIT,M
 iPad App,DMIT,Mark Goh,3,P106286,Felicia Wong,DIT,F,P101803,Rachel Chang,DIT,F,P100036,Lewis Poh,DBIT,M
-Green Living,DMIT,Audrey Lim,2,P101234,Peter Chua,DIT,M,P103287,Ng Ming Shu,DISM,F
+WebApplication,DMIT,Ben,2,P101234,Peter Chua,DIT,M,P103287,Ng Ming Shu,DISM,F
+SecurityResearch,DMIT,Dennis,2,P101240,Peter Chua,DIT,M,P103288,Lim Shu Ting,DISM,F
+MediaProduction,DMIT,Gary Lim,2,P101234,Peter Lim,DIT,M,P103289,Tan Shu Ting,DISM,F
+Android App,DMIT,Andrew Lim,2,P101235,Peter Tan,DIT,M,P103290,Rachel Lim,DISM,F
+MMORPG Game,DMIT,Johnny Tan,2,P101236,Peter Soh,DIT,M,P103291,Rachel Tan,DISM,F
+Board Game,DMIT,Eric Chua,2,P101237,Amy Tan,DIT,F,P103292,Tan Ming Shu,DISM,F
+Java Web Application,DMIT,Shawn Lim,2,P101238,Amy Chua,DIT,F,P103293,Chua Ming Shu,DISM,F
+Android Sport Wear App,DMIT,Samuel Lim,2,P101239,Amy Lum,DIT,F,P103294,Erika,DISM,F
